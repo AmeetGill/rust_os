@@ -50,8 +50,8 @@ struct ScreenCharacter{
     color_code: ColorCode,
 }
 
-const BUFFER_WIDTH: usize = 25;
-const BUFFER_HEIGHT: usize = 80;
+const BUFFER_WIDTH: usize = 80;
+const BUFFER_HEIGHT: usize = 25;
 
 #[repr(transparent)]
 struct Buffer {
@@ -125,7 +125,7 @@ impl Writer {
             }
         }
     }
-    
+
     fn new_line(&mut self) {
         for row in 1..BUFFER_HEIGHT {
             for col in 0..BUFFER_WIDTH {
