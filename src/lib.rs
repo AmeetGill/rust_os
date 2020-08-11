@@ -50,8 +50,11 @@ pub fn test_runner(tests: &[&dyn Testable]) {
     exit_qemu(QemuExitCode::Success);
 }
 
-pub fn init() {
+pub fn init(){
+    gdt::init();
     interrupts::init_idt();
+    unsafe { interrupts::PICS.lock().initialize() }
+    x86_64::instructions::interrupts::enable();
 }
 
 pub fn test_panic_handler(info: &PanicInfo) -> ! {
